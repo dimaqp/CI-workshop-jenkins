@@ -1,12 +1,20 @@
 pipeline {
     agent any
+    parameters {
+        string(
+            name: 'GREET',
+            defaultValue: 'Hello',
+            description: 'Greeting'
+        )
+    }
     stages {
-        stage('Hello World') {
+        stage('Greet') {
             steps {
                 script {
-                    println('Hello, World')
+                    echo "${params.GREET}, Milo"
                 }
             }
         }
     }
+
 }
