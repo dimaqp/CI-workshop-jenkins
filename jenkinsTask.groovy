@@ -1,31 +1,24 @@
-pipeline
-{
+pipeline {
     agent any
 
     tools {
         maven 'maven_home'
     }
 
-    {
-        stage('compile')
-        {
-            steps
-            {
+    stages {  // Correct placement and naming of the stages block
+        stage('compile') {
+            steps {
                 sh 'mvn clean compile'
             }
         }
-        stage('test')
-        {
-            steps
-            {
+        stage('test') {
+            steps {
                 sh 'mvn test'
             }
         }
-        stage('install')
-        {
-            steps
-            {
-                sh ' mvn clean install'
+        stage('install') {
+            steps {
+                sh 'mvn clean install'
             }
         }
     }
