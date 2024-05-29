@@ -1,20 +1,32 @@
-pipeline {
+pipeline
+{
     agent any
-    parameters {
-        string(
-            name: 'GREET',
-            defaultValue: 'Hello',
-            description: 'Greeting'
-        )
+
+    tools {
+        maven 'maven_home'
     }
-    stages {
-        stage('Greet') {
-            steps {
-                script {
-                    echo "${params.GREET}, Milo"
-                }
+
+    {
+        stage('compile')
+        {
+            steps
+            {
+                sh 'mvn clean compile'
+            }
+        }
+        stage('test')
+        {
+            steps
+            {
+                sh 'mvn test'
+            }
+        }
+        stage('install')
+        {
+            steps
+            {
+                sh ' mvn clean install'
             }
         }
     }
-
 }
