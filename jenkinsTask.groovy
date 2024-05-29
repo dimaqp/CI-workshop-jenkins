@@ -2,10 +2,10 @@ pipeline {
     agent any
 
     tools {
-        maven 'maven_home'
+        maven 'MAVEN_HOME'
     }
 
-    stages {  // Correct placement and naming of the stages block
+    stages {
         stage('compile') {
             steps {
                 sh 'mvn clean compile'
