@@ -2,7 +2,8 @@ pipeline {
     agent any
 
     tools {
-        maven 'MAVEN_HOME'
+        maven 'maven396'
+        jdk 'jdk8'
     }
 
     stages {
