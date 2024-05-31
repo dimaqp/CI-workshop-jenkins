@@ -32,7 +32,7 @@ pipeline {
                 sh "docker build -t dimaqp/petclinic:$env.BUILD_NUMBER ."
             }
         }
-
+        //push docker image
         stage('Push Docker Image') {
             steps {
                 withCredentials([usernamePassword(
