@@ -27,7 +27,7 @@ pipeline {
             }
         }
 
-        stage {
+        stage('build docker image') {
             steps {
                 sh "docker build -t dimaqp/petclinic:$env.BUILD_NUMBER ."
             }
