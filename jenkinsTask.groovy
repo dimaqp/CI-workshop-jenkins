@@ -1,4 +1,4 @@
-/* groovylint-disable BlockStartsWithBlankLine */
+/* groovylint-disable BlockStartsWithBlankLine, GStringExpressionWithinString */
 pipeline {
     agent any
 
@@ -36,14 +36,15 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 withCredentials([usernamePassword(
-                            credentialsId: 'docker_hub_credentials',
-                            usernameVariable: 'username',
-                            passwordVariable: 'password'
-                        )]) {
-                    //login to docker
+                    credentialsId: 'docker_hub_credentials',
+                    usernameVariable: 'username',
+                    passwordVariable: 'password'
+                )]) {
+                    // login to Docker
                     sh "docker login -u $username -p $password"
-                    sh "docker push dimaqp/petclinic:$env.BUILD_NUMBER"
-                        }
+                    // push Docker image
+                    sh "docker push dimaqp/petclinic:1.0.$env.BUILD_NUMBER"
+                }
             }
         }
     }
